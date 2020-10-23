@@ -58,7 +58,7 @@ class CleanCommand(Command):
 
 # Set Platform specific cmake args here
 if platform_system == "Windows":
-    cmake_args = ["-GVisual Studio 14 2015 Win64"]
+    cmake_args = ["-GVisual Studio 15 2017 Win64"]
 
 elif platform_system == "Darwin":
     cmake_args = ["-DCMAKE_OSX_DEPLOYMENT_TARGET:STRING=10.10"]
@@ -76,7 +76,7 @@ def exclude_files(cmake_manifest):
 
 setup(
     name = "swmm-toolkit",
-    version = "0.5.0",
+    version = "0.6.0",
 
     cmake_args = cmake_args,
 

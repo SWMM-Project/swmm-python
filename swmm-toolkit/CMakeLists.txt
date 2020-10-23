@@ -14,9 +14,10 @@ cmake_minimum_required (VERSION 3.17)
 project(swmm-toolkit)
 
 
-set(Python_FIND_VIRTUALENV FIRST)
-set(Python_ROOT_DIR "/usr/local/anaconda3")
-find_package(Python 3.7 COMPONENTS Development Interpreter)
+set(Python_EXECUTABLE ${PYTHON_EXECUTABLE})
+set(Python_INCLUDE_DIRS ${PYTHON_INCLUDE_DIR})
+set(Python_LIBRARY ${PYTHON_LIBRARY})
+find_package (Python ${PYTHON_VERSION_STRING} COMPONENTS Interpreter Development)
 
 
 find_package(SWIG REQUIRED)
@@ -35,7 +36,7 @@ add_subdirectory(src/swmm/toolkit)
 if(APPLE)
     install(CODE "execute_process(
         COMMAND
-            ${PROJECT_SOURCE_DIR}/swmm-solver/tools/relocate.zsh ${EXTERN_LIB_PATH}
+            ${PROJECT_SOURCE_DIR}/tools/relocate.zsh ${EXTERN_LIB_PATH}
         WORKING_DIRECTORY
             ${CMAKE_INSTALL_PREFIX}
         )"
